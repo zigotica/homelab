@@ -1,0 +1,32 @@
+version: "3"
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+networks:
+  dockernet:
+    name: dockernet
+    external: true
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    dns:
+      - 127.0.0.1
+    hostname: "${Z_HOST_PIHOLE}"
+    environment:
+      TZ: 'Europe/Andorra'
+      VIRTUAL_HOST: "${Z_HOST_PIHOLE}"
+      PROXY_LOCATION: "${Z_HOST_PIHOLE}"
+      WEBPASSWORD: 'pass'
+    volumes:
+      - "/home/${Z_USER}/containers/pihole/data:/etc/pihole/"
+      - "/home/${Z_USER}/containers/pihole/dns:/etc/dnsmasq.d/"
+    networks:
+      dockernet:
+        ipv4_address: "${Z_IP_PIHOLE}"
+    restart: unless-stopped
