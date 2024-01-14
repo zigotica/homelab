@@ -1,0 +1,29 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- Network:
+  - OPNSense:
+    icon: opnsense.png
+    href: "https://{{HOMEPAGE_VAR_FW_IP}}"
+    description: Firewall
+    widget:
+      type: opnsense
+      url: "https://{{HOMEPAGE_VAR_FW_IP}}"
+      username: "{{HOMEPAGE_VAR_FW_KEY}}"
+      password: "{{HOMEPAGE_VAR_FW_SECRET}}"
+      cpu: "CPU Load"
+      memory: "Active Memory"
+      wanUpload: "WAN Upload"
+      wanDownload: "WAN Download"
+  - PiHole:
+    icon: pi-hole.png
+    href: "http://{{HOMEPAGE_VAR_PIHOLE_IP}}/admin"
+    description: DNS Ad Blocker
+    container: pihole
+    widget:
+      type: pihole
+      url: "http://{{HOMEPAGE_VAR_PIHOLE_IP}}"
+      key: "{{HOMEPAGE_VAR_PIHOLE_KEY}}"
+
+

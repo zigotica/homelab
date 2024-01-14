@@ -1,0 +1,29 @@
+version: "3.8"
+
+networks:
+  dockernet:
+    name: dockernet
+    external: true
+
+services:
+  dashy:
+    image: lissy93/dashy
+    container_name: Dashy
+    volumes:
+      - ./config.yml:/app/public/conf.yml
+    ports:
+      - 80:80
+    environment:
+      - NODE_ENV=development
+      - UID=1000
+      - GID=1000
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      dockernet:
+        ipv4_address: "${Z_IP_DASHBOARD}"

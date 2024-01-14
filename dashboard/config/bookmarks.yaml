@@ -1,0 +1,19 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+- Development:
+  - Tilde:
+    - abbr: GH
+      href: https://github.com/zigotica/tilde
+  - Ansible:
+    - abbr: GH
+      href: https://github.com/zigotica/ansible
+  - Homelab:
+    - abbr: GH
+      href: https://github.com/zigotica/homelab
+
+- Entertainment:
+  - YouTube:
+    - abbr: YT
+      href: https://youtube.com/

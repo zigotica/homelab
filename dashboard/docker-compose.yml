@@ -1,0 +1,28 @@
+version: "3.3"
+
+networks:
+  dockernet:
+    name: dockernet
+    external: true
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock # (optional)
+    environment:
+      PUID: 1000
+      PGID: 1000
+      HOMEPAGE_VAR_PIHOLE_IP: "$HOMEPAGE_VAR_PIHOLE_IP"
+      HOMEPAGE_VAR_PIHOLE_KEY: "$HOMEPAGE_VAR_PIHOLE_KEY"
+      HOMEPAGE_VAR_FW_IP: "$HOMEPAGE_VAR_FW_IP"
+      HOMEPAGE_VAR_FW_KEY: "$HOMEPAGE_VAR_FW_KEY"
+      HOMEPAGE_VAR_FW_SECRET: "$HOMEPAGE_VAR_FW_SECRET"
+    restart: unless-stopped
+    networks:
+      dockernet:
+        ipv4_address: "${Z_IP_DASHBOARD}"
