@@ -6,6 +6,7 @@
   - OPNSense:
     icon: opnsense.png
     href: "https://{{HOMEPAGE_VAR_FW_IP}}"
+    siteMonitor: "https://{{HOMEPAGE_VAR_FW_IP}}"
     description: Firewall
     widget:
       type: opnsense
@@ -19,6 +20,7 @@
   - PiHole:
     icon: pi-hole.png
     href: "http://{{HOMEPAGE_VAR_PIHOLE_IP}}/admin"
+    siteMonitor: "http://{{HOMEPAGE_VAR_PIHOLE_IP}}/admin"
     description: DNS Ad Blocker
     container: pihole
     widget:
